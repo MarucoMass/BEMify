@@ -1,72 +1,109 @@
-# bemify README
+# BEMify - VSCode Extension
 
-This is the README for your extension "bemify". After writing up a brief description, we recommend including the following sections.
+BEMify es una extensión para Visual Studio Code que te permite aplicar automáticamente clases CSS usando la metodología **BEM (Block Element Modifier)** sobre fragmentos de HTML seleccionados, y generar las reglas CSS correspondientes en tu proyecto.
 
-## Features
+## 📦 Características
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- Solicita al usuario un nombre de clase base.
+- Analiza el HTML seleccionado y agrega clases BEM siguiendo la estructura jerárquica.
+- Genera reglas CSS para cada clase creada.
+- Busca automáticamente un archivo CSS común (`styles.css`, `main.css`, `app.css`, `index.css`, `style.css`) en tu proyecto:
+  - Si existe, agrega las nuevas clases al final.
+  - Si no existe, crea un archivo `styles.css` con las clases generadas.
+- Preserva atributos originales de los elementos HTML.
+- Compatible con proyectos que ya tienen clases existentes.
 
-For example if there is an image subfolder under your extension project workspace:
+## 🚀 Uso
 
-\!\[feature X\]\(images/feature-x.png\)
+1. Selecciona un fragmento de HTML en tu editor.
+2. Ejecuta el comando:
+   - **Desde la Paleta de Comandos**: `Ctrl+Shift+P` (Windows/Linux) o `Cmd+Shift+P` (macOS), luego escribe **"Apply BEM"**.
+   - O usa el comando registrado: `extension.applyBEM`.
+3. Ingresa el nombre de la clase base (por ejemplo: `header`).
+4. La extensión:
+   - Modificará el HTML seleccionado agregando las clases BEM.
+   - Creará o actualizará el archivo CSS correspondiente.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## 📂 Ejemplo
 
-## Requirements
+HTML original:
+```html
+<div>
+  <nav>
+    <ul>
+      <li>Item</li>
+    </ul>
+  </nav>
+</div>
+```
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+HTML modificado:
+```html
+<div class="header">
+  <nav class="header__nav">
+    <ul class="header__nav__ul">
+      <li class="header__nav__ul__li">Item</li>
+    </ul>
+  </nav>
+</div>
+```
 
-## Extension Settings
+CSS generado:
+```css
+.header {
+  /* estilos */
+}
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+.header__nav {
+  /* estilos */
+}
 
-For example:
+.header__nav__ul {
+  /* estilos */
+}
 
-This extension contributes the following settings:
+.header__nav__ul__li {
+  /* estilos */
+}
+```
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
 
-## Known Issues
+## 📥 Instalación (modo desarrollo)
+Clona este repositorio.
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+Instala las dependencias:
 
-## Release Notes
+bash
+Copiar
+Editar
+npm install
+Abre el proyecto en VSCode y presiona F5 para ejecutar la extensión en un entorno de prueba.
 
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+## 🛠 Dependencias
+node-html-parser - Licencia MIT.
 
 ---
 
-## Following extension guidelines
+### **LICENSE**
+```text
+MIT License
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+Copyright (c) 2025 [MarucoMass]
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-## Working with Markdown
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
-# BEMify
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
