@@ -18,7 +18,7 @@ BEMify is a Visual Studio Code extension that automatically applies CSS classes 
 
 1. Select an HTML fragment in your editor.
 2. Run the command:
-   - **From the Command Palette**: `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (macOS), then type **"bem"**.
+   - **From the Command Palette**: `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (macOS), then type **"bemify"**.
    - Or use the registered command: `extension.applyBEM`.
 3. Enter the base class name (e.g., `header`).
 4. The extension will:

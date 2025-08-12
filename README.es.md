@@ -18,7 +18,7 @@ BEMify es una extensión para Visual Studio Code que te permite aplicar automát
 
 1. Selecciona un fragmento de HTML en tu editor.
 2. Ejecuta el comando:
-   - **Desde la Paleta de Comandos**: `Ctrl+Shift+P` (Windows/Linux) o `Cmd+Shift+P` (macOS), luego escribe **"bem"**.
+   - **Desde la Paleta de Comandos**: `Ctrl+Shift+P` (Windows/Linux) o `Cmd+Shift+P` (macOS), luego escribe **"bemify"**.
    - O usa el comando registrado: `extension.applyBEM`.
 3. Ingresa el nombre de la clase base (por ejemplo: `header`).
 4. La extensión:

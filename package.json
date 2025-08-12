@@ -15,7 +15,7 @@
     "commands": [
       {
         "command": "extension.applyBEM",
-        "title": "bem"
+        "title": "bemify"
       }
     ]
   },
