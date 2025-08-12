@@ -1,3 +1,4 @@
+[🇬🇧 English](README.md)
 # BEMify - VSCode Extension
 
 BEMify es una extensión para Visual Studio Code que te permite aplicar automáticamente clases CSS usando la metodología **BEM (Block Element Modifier)** sobre fragmentos de HTML seleccionados, y generar las reglas CSS correspondientes en tu proyecto.
