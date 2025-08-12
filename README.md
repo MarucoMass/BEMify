@@ -76,7 +76,7 @@ Clone this repository.
 Install dependencies:
 - bash
 - npm install
-- Open the project in VSCode and press F5 to run the extension in a test environmena.
+- Open the project in VSCode and press F5 to run the extension in a test environment.
 
 ## 🛠 Dependencies
 node-html-parser - MIT License.
