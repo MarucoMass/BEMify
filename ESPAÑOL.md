@@ -7,7 +7,7 @@ BEMify es una extensión para Visual Studio Code que te permite aplicar automát
 - Solicita al usuario un nombre de clase base.
 - Analiza el HTML seleccionado y agrega clases BEM siguiendo la estructura jerárquica.
 - Genera reglas CSS para cada clase creada.
-- Busca automáticamente un archivo CSS común (`styles.css`, `main.css`, `app.css`, `index.css`, `style.css`) en tu proyecto:
+- Busca automáticamente un archivo CSS común (`styles.css`, `main.css`, `app.css`, `index.css`, `style.css`, `estilos.css`, `estilo.css`) en tu proyecto:
   - Si existe, agrega las nuevas clases al final.
   - Si no existe, crea un archivo `styles.css` con las clases generadas.
 - Preserva atributos originales de los elementos HTML.

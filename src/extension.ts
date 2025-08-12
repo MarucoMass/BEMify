@@ -119,7 +119,7 @@ export function activate(context: vscode.ExtensionContext) {
                 .join("\n\n");
 
             const workspaceFolder = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath || "";
-            const commonCssNames = ['styles.css', 'main.css', 'app.css', 'index.css', 'style.css'];
+            const commonCssNames = ['styles.css', 'main.css', 'app.css', 'index.css', 'style.css', 'estilos.css', 'estilo.css'];
 
             let cssFilePath = findCssFileInDirectory(workspaceFolder, commonCssNames);
 
