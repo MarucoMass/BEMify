@@ -92,6 +92,14 @@ CSS generado:
 }
 ```
 
+## Video tutorial 
+
+### Caso de Uso #1
+![Use Case #1](assets/bemify-tutorial-1.gif)
+
+### Caso de Uso #2
+![Use Case #2](assets/bemify-tutorial-2.gif)
+
 ## 🛠 Dependencias
 
 node-html-parser - Licencia MIT.
