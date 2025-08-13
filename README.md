@@ -91,7 +91,7 @@ Generated CSS:
 ```
 
 ## Video tutorial 
-[[!Use case #1](assets/bemify-tutorial-1.gif)]
+![Use Case #1](assets/bemify-tutorial-1.gif)
 
 
 ## 🛠 Dependencies
