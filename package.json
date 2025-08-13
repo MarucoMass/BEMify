@@ -6,6 +6,24 @@
   "engines": {
     "vscode": "^1.85.0"
   },
+  "publisher": "bemify",
+  "author": {
+    "name": "Mario Alberto Massonnat",
+    "email": "mariomass.dev@gmail.com"
+  },
+  "galleryBanner": {
+    "color": "#2B4D8C",
+    "theme": "dark"
+  },
+  "icon": "assets/bemify-logo.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MarucoMass/BEMify"
+  },
+  "bugs": {
+    "email": "bemify.help@gmail.com"
+  },
+  "license": "MIT",
   "categories": [
     "Other"
   ],
