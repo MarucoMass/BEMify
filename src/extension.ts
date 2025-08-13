@@ -26,7 +26,7 @@ function findCssFileInDirectory(
       }
     }
   } catch (err) {
-    console.error("Error al buscar archivos:", err);
+    console.error("Failed to search files:", err);
   }
   return null;
 }
@@ -39,8 +39,8 @@ export function activate(context: vscode.ExtensionContext) {
 
       if (editor) {
         const className = await vscode.window.showInputBox({
-          prompt: "Ingrese el nombre de la clase",
-          placeHolder: "Ejemplo: header",
+          prompt: "Enter the base BEM block name",
+          placeHolder: "Example: header",
         });
 
         if (!className) {
@@ -123,7 +123,7 @@ export function activate(context: vscode.ExtensionContext) {
 
         const cssOutput = Object.values(classes)
           .flatMap((set) => Array.from(set))
-          .map((className) => `.${className} {\n  /* estilos */\n}`)
+          .map((className) => `.${className} {\n  /* styles */\n}`)
           .join("\n\n");
 
         const workspaceFolder =
@@ -148,7 +148,7 @@ export function activate(context: vscode.ExtensionContext) {
           const updatedContent = `${currentContent}\n\n${cssOutput}`;
           fs.writeFileSync(cssFilePath, updatedContent, "utf8");
           vscode.window.showInformationMessage(
-            `Clases agregadas al archivo CSS existente: ${cssFilePath}`
+            `Classes added to existing CSS file: ${cssFilePath}`
           );
         } else {
           const newCssFilePath = path.join(workspaceFolder, "styles.css");
@@ -158,14 +158,14 @@ export function activate(context: vscode.ExtensionContext) {
 
           vscode.window
             .showInformationMessage(
-              `Archivo CSS creado: styles.css.\nEtiqueta para agregar en <head>: ${linkTag}`,
-              "Copiar al portapapeles"
+              `CSS file created: styles.css.\nTag to add in <head>: ${linkTag}`,
+              "Copy to clipboard"
             )
             .then((selection) => {
-              if (selection === "Copiar al portapapeles") {
+              if (selection === "Copy to clipboard") {
                 vscode.env.clipboard.writeText(linkTag);
                 vscode.window.showInformationMessage(
-                  "Etiqueta <link> copiada al portapapeles"
+                  "<link> tag copied to clipboard"
                 );
               }
             });

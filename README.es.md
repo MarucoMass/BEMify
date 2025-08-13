@@ -35,10 +35,10 @@ HTML original:
   <nav>
     <ul class="flex">
       <li>
-        <a href="http://" target="_blank">Link</a>
+        <a href="#" target="_blank">Link</a>
       </li>
       <li>Item</li>
-      <li><img src="" alt="img" /></li>
+      <li><img src="assets/img.jpg" alt="img" /></li>
     </ul>
   </nav>
 </div>
@@ -57,7 +57,7 @@ HTML modificado:
       </li>
       <li class="header__nav__ul__li">Item</li>
       <li class="header__nav__ul__li">
-        <img src=" " alt="img" class="header__nav__ul__li__img" />
+        <img src="assets/img.jpg" alt="img" class="header__nav__ul__li__img" />
       </li>
     </ul>
   </nav>

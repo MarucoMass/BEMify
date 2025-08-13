@@ -1,12 +1,12 @@
 {
   "name": "bemify",
   "displayName": "BEMify",
-  "description": "Extensión para autocompletar bloques de HTML con clases según metodología BEM",
-  "version": "0.0.1",
+  "description": "VS Code extension to autocomplete HTML elements with CSS classes using the BEM methodology",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.85.0"
   },
-  "publisher": "bemify",
+  "publisher": "mario-mass",
   "author": {
     "name": "Mario Alberto Massonnat",
     "email": "mariomass.dev@gmail.com"
