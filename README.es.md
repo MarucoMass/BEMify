@@ -92,16 +92,6 @@ CSS generado:
 }
 ```
 
-## 📥 Instalación (modo desarrollo)
-
-Clona este repositorio.
-
-Instala las dependencias:
-
-- bash
-- npm install
-- Abre el proyecto en VSCode y presiona F5 para ejecutar la extensión en un entorno de prueba.
-
 ## 🛠 Dependencias
 
 node-html-parser - Licencia MIT.

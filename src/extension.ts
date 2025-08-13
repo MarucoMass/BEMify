@@ -147,13 +147,13 @@ export function activate(context: vscode.ExtensionContext) {
           const currentContent = fs.readFileSync(cssFilePath, "utf8");
           const updatedContent = `${currentContent}\n\n${cssOutput}`;
           fs.writeFileSync(cssFilePath, updatedContent, "utf8");
+          const existingCssName = path.relative(workspaceFolder, cssFilePath).replace(/\\/g, '/');
           vscode.window.showInformationMessage(
-            `Classes added to existing CSS file: ${cssFilePath}`
+            `Classes added to existing CSS file: ${existingCssName}`
           );
         } else {
           const newCssFilePath = path.join(workspaceFolder, "styles.css");
           fs.writeFileSync(newCssFilePath, cssOutput, "utf8");
-          // vscode.window.showInformationMessage(`Archivo CSS creado en: ${newCssFilePath}`);
           const linkTag = '<link rel="stylesheet" href="styles.css">';
 
           vscode.window

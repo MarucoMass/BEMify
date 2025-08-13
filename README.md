@@ -90,15 +90,9 @@ Generated CSS:
 }
 ```
 
-## 📥 Installation (development mode)
+## Video tutorial 
+[[!Use case #1](assets/bemify-tutorial-1.gif)]
 
-Clone this repository.
-
-Install dependencies:
-
-- bash
-- npm install
-- Open the project in VSCode and press F5 to run the extension in a test environment.
 
 ## 🛠 Dependencies
 
