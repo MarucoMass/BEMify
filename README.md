@@ -36,7 +36,7 @@ Original HTML:
     <ul class="flex">
       <li><a href="#" target="_blank">Link</a></li>
       <li>Item</li>
-      <li><img src="assets/img.jpg" alt="img" /></li>
+      <li><img src="assets/bemify-logo.png" alt="bemify-logo" alt="img" /></li>
     </ul>
   </nav>
 </div>
@@ -49,13 +49,13 @@ Modified HTML:
   <nav class="header__nav">
     <ul class="flex header__nav__ul">
       <li class="header__nav__ul__li">
-        <a href="http://" target="_blank" class="header__nav__ul__li__a"
+        <a href="#" target="_blank" class="header__nav__ul__li__a"
           >Link</a
         >
       </li>
       <li class="header__nav__ul__li">Item</li>
       <li class="header__nav__ul__li">
-        <img src="assets/img.jpg" alt="img" class="header__nav__ul__li__img" />
+        <img src="assets/bemify-logo.png" alt="bemify-logo" class="header__nav__ul__li__img" />
       </li>
     </ul>
   </nav>
