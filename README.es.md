@@ -1,4 +1,5 @@
 [🇬🇧 English](README.md)
+
 # BEMify - VSCode Extension
 
 BEMify es una extensión para Visual Studio Code que te permite aplicar automáticamente clases CSS usando la metodología **BEM (Block Element Modifier)** sobre fragmentos de HTML seleccionados, y generar las reglas CSS correspondientes en tu proyecto.
@@ -28,28 +29,43 @@ BEMify es una extensión para Visual Studio Code que te permite aplicar automát
 ## 📂 Ejemplo
 
 HTML original:
+
 ```html
 <div>
   <nav>
-    <ul>
+    <ul class="flex">
+      <li>
+        <a href="http://" target="_blank">Link</a>
+      </li>
       <li>Item</li>
+      <li><img src="" alt="img" /></li>
     </ul>
   </nav>
 </div>
 ```
 
 HTML modificado:
+
 ```html
 <div class="header">
   <nav class="header__nav">
-    <ul class="header__nav__ul">
+    <ul class="flex header__nav__ul">
+      <li class="header__nav__ul__li">
+        <a href="http://" target="_blank" class="header__nav__ul__li__a"
+          >Link</a
+        >
+      </li>
       <li class="header__nav__ul__li">Item</li>
+      <li class="header__nav__ul__li">
+        <img src=" " alt="img" class="header__nav__ul__li__img" />
+      </li>
     </ul>
   </nav>
 </div>
 ```
 
 CSS generado:
+
 ```css
 .header {
   /* estilos */
@@ -66,19 +82,26 @@ CSS generado:
 .header__nav__ul__li {
   /* estilos */
 }
+
+.header__nav__ul__li__a {
+  /* estilos */
+}
+
+.header__nav__ul__li__img {
+  /* estilos */
+}
 ```
 
-
 ## 📥 Instalación (modo desarrollo)
+
 Clona este repositorio.
 
 Instala las dependencias:
+
 - bash
 - npm install
 - Abre el proyecto en VSCode y presiona F5 para ejecutar la extensión en un entorno de prueba.
 
 ## 🛠 Dependencias
+
 node-html-parser - Licencia MIT.
-
-
-
