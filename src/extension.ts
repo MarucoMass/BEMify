@@ -111,12 +111,6 @@ export function activate(context: vscode.ExtensionContext) {
 
           children.forEach((child: any) => {
             if (child.tagName) {
-              // Crear la nueva clase hija basada en el modo elegido
-              
-              // let newChildClass: string = isFirst
-              //   ? `${classPrefix}`
-              //   : `${classPrefix}__${child.tagName.toLowerCase()}`;
-
               let newChildClass: string;
               if (isFirst) {
                 newChildClass = `${classPrefix}`;

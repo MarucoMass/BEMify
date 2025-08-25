@@ -14,6 +14,10 @@ BEMify is a Visual Studio Code extension that automatically applies CSS classes 
   - If it doesn’t exist, creates a `styles.css` file with the generated classes.
 - Preserves original attributes of HTML elements.
 - Compatible with projects that already have existing classes.
+- 🔄 **Switchable modes**:  
+  - **Modern mode** (default): generates nested class naming (e.g., `header__nav, header__nav__ul, header__nav__ul__li`).  
+  - **Classic mode**: generates flatter class naming (e.g., `header_nav, header_ul, header_li`).  
+  - Use the command **`bemify-mode`** to switch modes — it opens a select where you can choose **modern** or **classic**.
 
 ## 🚀 Usage
 
@@ -25,6 +29,8 @@ BEMify is a Visual Studio Code extension that automatically applies CSS classes 
 4. The extension will:
    - Modify the selected HTML by adding BEM classes.
    - Create or update the corresponding CSS file.
+5. Switch the naming mode at any time with the command:
+   - **`bemify-mode`** → choose **modern** or **classic** from the select.
 
 ## 📂 Example
 
@@ -41,6 +47,8 @@ Original HTML:
   </nav>
 </div>
 ```
+
+### Modern mode (default)
 
 Modified HTML:
 
@@ -65,38 +73,63 @@ Modified HTML:
 Generated CSS:
 
 ```css
-.header {
-  /* styles */
-}
+.header { /* styles */ }
+.header__nav { /* styles */ }
+.header__nav__ul { /* styles */ }
+.header__nav__ul__li { /* styles */ }
+.header__nav__ul__li__a { /* styles */ }
+.header__nav__ul__li__img { /* styles */ }
+```
 
-.header__nav {
-  /* styles */
-}
+### Classic mode
 
-.header__nav__ul {
-  /* styles */
-}
+Modified HTML:
 
-.header__nav__ul__li {
-  /* styles */
-}
+```html
+<div class="header">
+  <nav class="header_nav">
+    <ul class="flex header_ul">
+      <li class="header_li">
+        <a href="#" target="_blank" class="header_a">Link</a>
+      </li>
+      <li class="header_li">Item</li>
+      <li class="header_li">
+        <img src="assets/bemify-logo.png" alt="bemify-logo" class="header_img" />
+      </li>
+    </ul>
+  </nav>
+</div>
+```
 
-.header__nav__ul__li__a {
-  /* styles */
-}
+Generated CSS:
 
-.header__nav__ul__li__img {
-  /* styles */
-}
+```css
+.header { /* styles */ }
+.header_nav { /* styles */ }
+.header_ul { /* styles */ }
+.header_li { /* styles */ }
+.header_a { /* styles */ }
+.header_img { /* styles */ }
 ```
 
 ## Video tutorial 
 
-### Use Case #1
-![Use Case #1](assets/bemify-tutorial-1.gif)
+### Modern mode without CSS
+In this example, a `styles.css` file is automatically created since it does not exist yet.  
+![Modern mode with no previous css file](assets/bemify-tutorial-1.gif)
 
-### Use Case #2
-![Use Case #2](assets/bemify-tutorial-2.gif)
+### Modern mode with existing CSS
+Here, an existing stylesheet is detected and the new classes are appended at the end.  
+![Modern mode with existing CSS file](assets/bemify-tutorial-2.gif)
+
+### Switching to Modern mode with existing CSS
+The user selects **Modern mode** from the `bemify-mode` command.  
+![Switching to Modern mode with existing CSS file](assets/modern.gif)
+
+### Switching to Classic mode with existing CSS
+The user selects **Classic mode** from the `bemify-mode` command.  
+![Switching to Classic mode with existing CSS file](assets/classic.gif)
+
 
 
 ## 🛠 Dependencies
