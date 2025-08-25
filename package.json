@@ -30,10 +30,32 @@
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
+    "configuration": {
+      "title": "BEMify",
+      "properties": {
+        "bemify.mode": {
+          "type": "string",
+          "default": "modern",
+          "enum": [
+            "classic",
+            "modern"
+          ],
+          "enumDescriptions": [
+            "Classic mode: header_nav, header_ul, header_li",
+            "Modern mode: header__nav, header__nav__ul, header__nav__ul__li"
+          ],
+          "description": "Choose the BEM class naming style."
+        }
+      }
+    },
     "commands": [
       {
         "command": "extension.applyBEM",
         "title": "bemify"
+      },
+      {
+        "command": "extension.changeBEMifyMode",
+        "title": "bemify-mode"
       }
     ]
   },

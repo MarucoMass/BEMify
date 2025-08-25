@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 import * as fs from "fs";
 import * as path from "path";
 import { HTMLElement, parse } from "node-html-parser";
+import { registerChangeModeCommand } from "./changeMode";
 
 // Función para encontrar archivos .css en el directorio (y subdirectorios)
 function findCssFileInDirectory(
@@ -53,67 +54,82 @@ export function activate(context: vscode.ExtensionContext) {
 
         const root = parse(selectedText);
 
-        function agregarClasesBEM(
-          elemento: HTMLElement,
-          prefijoClase: string,
-          esPrimero: boolean = false
+        function addBEMClasses(
+          element: HTMLElement,
+          classPrefix: string,
+          isFirst: boolean = false
         ) {
-          if (!classes[prefijoClase]) {
-            classes[prefijoClase] = [];
+          if (!classes[classPrefix]) {
+            classes[classPrefix] = [];
           }
+
+          // Leer configuración del usuario
+          const config = vscode.workspace.getConfiguration("bemify");
+          const mode = config.get<string>("mode", "modern");
+
           // Asignar la clase al elemento actual
-          if (elemento.tagName) {
-            const atributosOriginales: { [key: string]: string } = {};
-            for (const [name, value] of Object.entries(elemento.attributes)) {
+          if (element.tagName) {
+            const originalAttributes: { [key: string]: string } = {};
+            for (const [name, value] of Object.entries(element.attributes)) {
               if (value === "") {
                 // Si el atributo tiene un valor vacío, mantenerlo como atributo vacío
-                atributosOriginales[name] = " ";
+                originalAttributes[name] = " ";
               } else {
                 // Si el atributo tiene un valor, mantener el valor original
-                atributosOriginales[name] = value;
+                originalAttributes[name] = value;
               }
             }
 
-            const clasesExistentes = elemento.getAttribute("class") || "";
-            const nuevasClases = `${clasesExistentes} ${prefijoClase}`.trim();
+            const existingClasses = element.getAttribute("class") || "";
+            const newClasses = `${existingClasses} ${classPrefix}`.trim();
 
-            if (!classes[prefijoClase].includes(prefijoClase)) {
-              classes[prefijoClase].push(prefijoClase);
+            if (!classes[classPrefix].includes(classPrefix)) {
+              classes[classPrefix].push(classPrefix);
             }
 
-            elemento.setAttribute("class", nuevasClases);
+            element.setAttribute("class", newClasses);
 
-            for (const nombreAtributo in atributosOriginales) {
+            for (const nombreAtributo in originalAttributes) {
               if (nombreAtributo !== "class") {
                 // Restaurar los atributos sin añadir comillas adicionales
-                const valor = atributosOriginales[nombreAtributo];
-                if (valor === "") {
+                const value = originalAttributes[nombreAtributo];
+                if (value === "") {
                   // Si el atributo es vacío, establecerlo sin valor
-                  elemento.setAttribute(nombreAtributo, " ");
+                  element.setAttribute(nombreAtributo, " ");
                 } else {
                   // De lo contrario, restaurar con su valor original
-                  elemento.setAttribute(nombreAtributo, valor);
+                  element.setAttribute(nombreAtributo, value);
                 }
               }
             }
           }
 
           // Iterar sobre los hijos que son nodos de tipo elemento
-          const hijos = elemento.childNodes.filter(
+          const children = element.childNodes.filter(
             (nodo) => nodo.nodeType === 1
           );
 
-          hijos.forEach((hijo: any) => {
-            if (hijo.tagName) {
-              // Crear la nueva clase hija basada en la jerarquía actual
-              const nuevaClaseHija = esPrimero
-                ? `${prefijoClase}`
-                : `${prefijoClase}__${hijo.tagName.toLowerCase()}`;
-              agregarClasesBEM(hijo, nuevaClaseHija, false);
+          children.forEach((child: any) => {
+            if (child.tagName) {
+              let newChildClass: string;
+              if (isFirst) {
+                newChildClass = `${classPrefix}`;
+              } else {
+                if (mode === "modern") {
+                  // todo el prefijo acumulado
+                  newChildClass = `${classPrefix}__${child.tagName.toLowerCase()}`;
+                } else {
+                  // solo bloque base + nivel actual
+                  const baseBlock = classPrefix.split(/__|_/)[0]; // extraer solo el bloque base
+                  newChildClass = `${baseBlock}_${child.tagName.toLowerCase()}`;
+                }
+              }
+
+              addBEMClasses(child, newChildClass, false);
             }
           });
         }
-        agregarClasesBEM(root, className, true);
+        addBEMClasses(root, className, true);
 
         const modifiedText = root.toString();
 
@@ -147,7 +163,9 @@ export function activate(context: vscode.ExtensionContext) {
           const currentContent = fs.readFileSync(cssFilePath, "utf8");
           const updatedContent = `${currentContent}\n\n${cssOutput}`;
           fs.writeFileSync(cssFilePath, updatedContent, "utf8");
-          const existingCssName = path.relative(workspaceFolder, cssFilePath).replace(/\\/g, '/');
+          const existingCssName = path
+            .relative(workspaceFolder, cssFilePath)
+            .replace(/\\/g, "/");
           vscode.window.showInformationMessage(
             `Classes added to existing CSS file: ${existingCssName}`
           );
@@ -175,6 +193,9 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   context.subscriptions.push(disposable);
+
+  // funcion para cambiar el modo
+  registerChangeModeCommand(context);
 }
 
 export function deactivate() {}
